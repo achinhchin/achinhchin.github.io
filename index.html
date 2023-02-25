@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+            font-family: sans-serif;
+            background-color: #191c1e;
+        }
+
+        header {
+            color: #e1e2e5;
+        }
+
+        .sect-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sect-main>div {
+            transition-duration: .3s;
+            width: fit-content;
+            margin: 1rem;
+            padding: 1rem;
+            background-color: #004d68;
+            border-radius: .7rem;
+            box-shadow: 2px 2px 3px 0 #00000055;
+            color: #c2e8ff;
+            cursor: pointer;
+            font-size: 1.75rem;
+        }
+
+        .sect-main>div:hover {
+            box-shadow: 2px 2px 5px 0 #00000055;
+            transform: scale(105%);
+            background-color: #ffe16a;
+            color: #221b00;
+        }
+    </style>
+    <title> Triamudom Entrance Examination Countdown </title>
+</head>
+
+<body>
+    <header>
+        <center>
+            <h1> Triamudom Entrance Examination Countdown </h1>
+        </center>
+    </header>
+
+    <section class="sect-main">
+        <div> </div>
+        <div> </div>
+        <div> </div>
+        <div> </div>
+    </section>
+    <script>
+        var sectMain = document.querySelector('.sect-main'), tuDay = (new Date(2023, 2, 4)).getTime();
+        function update() {
+            var now = (new Date()).getTime(), left = Math.round((tuDay - now) / 1000), leftHours = Math.floor(left / 3600), leftMinutes = Math.floor(left / 60) - leftHours * 60, leftSecs = left - leftHours * 3600 - leftMinutes * 60
+            sectMain.children[0].innerHTML = `${leftHours} hours ${leftMinutes} minutes ${leftSecs} total left`
+            left = Math.round((tuDay - now) / 1000), leftHours = Math.floor(left / 3600) - 8 * Math.floor(left / 86400), leftMinutes = Math.floor(left / 60) - leftHours * 60, leftSecs = left - leftHours * 3600 - leftMinutes * 60
+            sectMain.children[1].innerHTML = `${leftHours} hours ${leftMinutes} minutes ${leftSecs} excluding sleeping time`
+            left = Math.round((tuDay - now) / 1000), leftHours = Math.floor(left / 3600) - 10 * Math.floor(left / 86400), leftMinutes = Math.floor(left / 60) - leftHours * 60, leftSecs = left - leftHours * 3600 - leftMinutes * 60
+            sectMain.children[2].innerHTML = `${leftHours} hours ${leftMinutes} minutes ${leftSecs} excluding sleeping, eating and bath time`
+            left = Math.round((tuDay - now) / 1000), leftHours = Math.floor(left / 3600) - 15 * Math.floor(left / 86400), leftMinutes = Math.floor(left / 60) - leftHours * 60, leftSecs = left - leftHours * 3600 - leftMinutes * 60
+            sectMain.children[3].innerHTML = `${leftHours} hours ${leftMinutes} minutes ${leftSecs} excluding sleeping, eating, bath and rest time`
+        }
+        update()
+        setInterval(() => {
+            update()
+        }, 1000);
+    </script>
+</body>
+
+</html>
